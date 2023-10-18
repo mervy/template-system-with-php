@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Homemade templates</title>
 </head>
 
 <body>
@@ -15,15 +15,14 @@
             <a
                 href="https://pt.stackoverflow.com/questions/491959/como-criar-um-sistema-de-templates-com-slots-se%C3%A7%C3%B5es-com-php">Como
                 criar um sistema de templates com slots/seções com PHP?</a>
-        </li>
-        <div class="s-prose js-post-body" itemprop="text">
-            <p>De maneira bem simples, imagino que você queira construir um sistema de layout e slots de template no
-                PHP.</p>
-            <p>Há muito tempo atrás fiz uma lib chamada <a href="https://github.com/phplegends/view/tree/master/src"
-                    rel="nofollow noreferrer">PHPLegends/View</a> que tem isso.</p>
-            <p>Só que, de maneira bem simplificada, você pode fazer da maneira que vou explicar abaixo:</p>
-            <p>Crie a Classe <code>View</code>, que representa o template que vai ser renderizado.</p>
-            <pre class="lang-php s-code-block"><code class="hljs language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">View</span>
+            <div class="s-prose js-post-body" itemprop="text">
+                <p>De maneira bem simples, imagino que você queira construir um sistema de layout e slots de template no
+                    PHP.</p>
+                <p>Há muito tempo atrás fiz uma lib chamada <a href="https://github.com/phplegends/view/tree/master/src"
+                        rel="nofollow noreferrer">PHPLegends/View</a> que tem isso.</p>
+                <p>Só que, de maneira bem simplificada, você pode fazer da maneira que vou explicar abaixo:</p>
+                <p>Crie a Classe <code>View</code>, que representa o template que vai ser renderizado.</p>
+                <pre class="lang-php s-code-block"><code class="hljs language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">View</span>
                 </span>{
                     
                     <span class="hljs-keyword">protected</span> <span class="hljs-variable">$sections</span>    = [];
@@ -79,10 +78,11 @@
                     }
                 }
                 </code></pre>
-            <p>Em seguida, você agora precisa de criar dois arquivos para fazer o teste. Crie o arquivo
-                <code>templates/layout.php</code> e <code>templates/teste.php</code>. Com os seguintes conteúdos:</p>
-            <p>layout.php:</p>
-            <pre class="lang-php s-code-block"><code class="hljs language-php">&lt;!DOCTYPE html&gt;
+                <p>Em seguida, você agora precisa de criar dois arquivos para fazer o teste. Crie o arquivo
+                    <code>templates/layout.php</code> e <code>templates/teste.php</code>. Com os seguintes conteúdos:
+                </p>
+                <p>layout.php:</p>
+                <pre class="lang-php s-code-block"><code class="hljs language-php">&lt;!DOCTYPE html&gt;
                 &lt;html&gt;
                 &lt;head&gt;
                     &lt;title&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">getSection</span>(<span class="hljs-string">'title'</span>) <span class="hljs-meta">?&gt;</span>&lt;/title&gt;
@@ -94,8 +94,8 @@
                 &lt;/body&gt;
                 &lt;/html&gt;
                 </code></pre>
-            <p>e teste.php</p>
-            <pre class="lang-php s-code-block"><code class="hljs language-php"><span class="hljs-meta">&lt;?php</span> <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">layout</span>(<span class="hljs-string">'templates/layout.php'</span>) <span class="hljs-meta">?&gt;</span>
+                <p>e teste.php</p>
+                <pre class="lang-php s-code-block"><code class="hljs language-php"><span class="hljs-meta">&lt;?php</span> <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">layout</span>(<span class="hljs-string">'templates/layout.php'</span>) <span class="hljs-meta">?&gt;</span>
                 
                 <span class="hljs-meta">&lt;?php</span> <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">section</span>(<span class="hljs-string">'footer'</span>) <span class="hljs-meta">?&gt;</span>
                 Meu footer bonito
@@ -110,16 +110,16 @@
                 Título <span class="hljs-keyword">do</span> meu site
                 <span class="hljs-meta">&lt;?php</span> <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">end</span>() <span class="hljs-meta">?&gt;</span>
                 </code></pre>
-            <p>Em seguida, faça o teste chamando assim:</p>
-            <pre class="lang-php s-code-block"><code class="hljs language-php"><span class="hljs-variable">$view</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">View</span>(<span class="hljs-string">'templates/teste.php'</span>, [
+                <p>Em seguida, faça o teste chamando assim:</p>
+                <pre class="lang-php s-code-block"><code class="hljs language-php"><span class="hljs-variable">$view</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">View</span>(<span class="hljs-string">'templates/teste.php'</span>, [
                     <span class="hljs-string">'nome'</span> =&gt; <span class="hljs-string">'Wallace'</span>,
                     <span class="hljs-string">'idade'</span> =&gt; <span class="hljs-number">30</span>,
                 ]);
                 
                 <span class="hljs-keyword">echo</span> <span class="hljs-variable">$view</span>-&gt;<span class="hljs-title function_ invoke__">render</span>();
                 </code></pre>
-            <p>O resultado será:</p>
-            <pre class="lang-html s-code-block"><code class="hljs language-xml"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+                <p>O resultado será:</p>
+                <pre class="lang-html s-code-block"><code class="hljs language-xml"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
                 <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
                 <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
                     <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Título do meu site<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
@@ -130,41 +130,78 @@
                 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
                 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
                 </code></pre>
-            <h2>Explicação</h2>
-            <h3>ob_start e ob_get_end</h3>
-            <p>O segredo está no <code>ob_start()</code> e <code>ob_get_end()</code>. A primeira função captura para a
-                memória tudo que está indo para saída (as coisas que você dá <code>echo</code> ou escreve como
-                <code>html</code>). Em seguida, quando chamamos <code>ob_get_end</code> você obtém todo conteúdo
-                armazenado e a captura é encerrada. Para facilitar, sempre pegamos o nome e colocamos na na variável
-                <code>$sections</code> com uma chave e um valor capturado até a chamada de <code>end</code>.</p>
-            <p>Note que em <code>render</code> chamamos de novo o <code>ob_start()</code>. Isso é para o conteúdo de
-                <code>require</code> não ser exibido, e sim apenas capturado. Mesmo você chamando <code>ob_start</code>
-                várias vezes, é considerado apenas o trecho onde você chamou <code>ob_start</code> até a chamada de
-                <code>ob_get_end</code>. O PHP internamente vai empilhando, até você "fechar" todos os
-                <code>ob_start</code> com a chamada de <code>ob_get_end</code>.</p>
-            <p>Lembrando que esse exemplo foi o mínimo, apenas para entender o funcionamento. Você pode separar o código
-                de forma melhor, se achar necessário, como fiz na minha biblioteca.</p>
-            <h3>extract</h3>
-            <p>Essa função transforma os valores passados num <code>array</code> em variáveis. Como usamos o
-                <code>require</code> dentro do método <code>render</code>, as variáveis estarão disponíveis no seu
-                "template".</p>
-            <p>Assim segundo, no nosso caso, o valor <code>['nome' =&gt; 'Wallace', 'idade' =&gt; 30]</code> foram
-                transformados para <code>$nome</code> e <code>$idade</code>.</p>
-            <h3>O acesso ao <code>$this</code></h3>
-            <p>Como nosso template foi chamado através da função <code>require</code>, tudo que tiver dentro da classe
-                <code>View</code> estará acessível em <code>templates/layout.php</code> e
-                <code>templates/teste.php</code>, inclusive a variável <code>$this</code>. Foi por esse motivo que na
-                minha biblioteca eu criei a classe <code>Context</code>, para ela isolar o escopo dos templates para a
-                instância de <code>Context</code>, já que tinha coisas em <code>View</code> que não queria que fosse
-                acessíveis pelo template. Mas nesse caso, é só uma ideia, fica a seu critério implementar isso ou de
-                outra forma.</p>
-            <blockquote>
-                <p><strong>NOTA</strong>: O meu <code>section</code> é equivalente ao seu <code>start</code>, seguido de
-                    <code>end</code>. E o meu <code>getSection</code> é equivalente ao seu <code>section</code>. Pode
-                    ficar a vontade para mudar os nomes =)</p>
-            </blockquote>
-        </div>
-
+                <h2>Explicação</h2>
+                <h3>ob_start e ob_get_end</h3>
+                <p>O segredo está no <code>ob_start()</code> e <code>ob_get_end()</code>. A primeira função captura para
+                    a
+                    memória tudo que está indo para saída (as coisas que você dá <code>echo</code> ou escreve como
+                    <code>html</code>). Em seguida, quando chamamos <code>ob_get_end</code> você obtém todo conteúdo
+                    armazenado e a captura é encerrada. Para facilitar, sempre pegamos o nome e colocamos na na variável
+                    <code>$sections</code> com uma chave e um valor capturado até a chamada de <code>end</code>.
+                </p>
+                <p>Note que em <code>render</code> chamamos de novo o <code>ob_start()</code>. Isso é para o conteúdo de
+                    <code>require</code> não ser exibido, e sim apenas capturado. Mesmo você chamando
+                    <code>ob_start</code>
+                    várias vezes, é considerado apenas o trecho onde você chamou <code>ob_start</code> até a chamada de
+                    <code>ob_get_end</code>. O PHP internamente vai empilhando, até você "fechar" todos os
+                    <code>ob_start</code> com a chamada de <code>ob_get_end</code>.
+                </p>
+                <p>Lembrando que esse exemplo foi o mínimo, apenas para entender o funcionamento. Você pode separar o
+                    código
+                    de forma melhor, se achar necessário, como fiz na minha biblioteca.</p>
+                <h3>extract</h3>
+                <p>Essa função transforma os valores passados num <code>array</code> em variáveis. Como usamos o
+                    <code>require</code> dentro do método <code>render</code>, as variáveis estarão disponíveis no seu
+                    "template".
+                </p>
+                <p>Assim segundo, no nosso caso, o valor <code>['nome' =&gt; 'Wallace', 'idade' =&gt; 30]</code> foram
+                    transformados para <code>$nome</code> e <code>$idade</code>.</p>
+                <h3>O acesso ao <code>$this</code></h3>
+                <p>Como nosso template foi chamado através da função <code>require</code>, tudo que tiver dentro da
+                    classe
+                    <code>View</code> estará acessível em <code>templates/layout.php</code> e
+                    <code>templates/teste.php</code>, inclusive a variável <code>$this</code>. Foi por esse motivo que
+                    na
+                    minha biblioteca eu criei a classe <code>Context</code>, para ela isolar o escopo dos templates para
+                    a
+                    instância de <code>Context</code>, já que tinha coisas em <code>View</code> que não queria que fosse
+                    acessíveis pelo template. Mas nesse caso, é só uma ideia, fica a seu critério implementar isso ou de
+                    outra forma.
+                </p>
+                <blockquote>
+                    <p><strong>NOTA</strong>: O meu <code>section</code> é equivalente ao seu <code>start</code>,
+                        seguido de
+                        <code>end</code>. E o meu <code>getSection</code> é equivalente ao seu <code>section</code>.
+                        Pode
+                        ficar a vontade para mudar os nomes =)
+                    </p>
+                </blockquote>
+            </div>
+        </li>
+        <li>
+            <a href="https://github.com/raelgc/template">Templates em PHP</a>
+        </li>
+        <li>
+            <a href="https://raelcunha.com/template/">Tutorial de Templates em PHP</a>
+        </li>
+        <li>
+            <a href="https://dicasdephp.com.br/templates-php/">Templates PHP</a>
+        </li>
+        <li>
+            <a href="https://www.botecodigital.dev.br/php/twig-template-engine-para-php/">Twig – Template Engine para
+                PHP</a>
+        </li>
+        <li>
+            <a href="https://www.revista-programar.info/artigos/sistema-basico-de-templates-em-php/">Sistema básico de
+                template</a>
+        </li>
+        <li>
+            <a href="http://devfuria.com.br/php/introducao-ao-twig-template/">Introdução ao Twig template para PHP</a>
+        </li>
+        <li>
+            <a href="https://www.diegobrocanelli.com.br/php/twig-a-super-engine-template-para-php/">Twig – A Super engine template para PHP</a>
+        </li>
+        
     </ul>
 </body>
 
